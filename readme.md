@@ -1,5 +1,4 @@
-BETAMAXimizer
-===
+![logo](images/betaMaxAlpha.png)
 
 Purpose:
 ---
@@ -9,11 +8,11 @@ Srsy, tho - SIMPLE is key here.
 
 Features:
 ===
-- Games can be created and edited as well as their versions. 
+- Games can be created and edited as well as their versions.
 - Game Creators can invite Players.
 - Players can browse games and request access to games.
 - Creators can approve requests from Players
-- Creators can 
+- Creators can
 - Admins must approve games before they are viewable.
 - Admins can promote Players to Creator
 
