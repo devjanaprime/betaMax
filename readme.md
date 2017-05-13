@@ -41,6 +41,14 @@ Tech:
 - AngularJS
 - Bootstrap CSS
 
+Versioning:
+===
+
+Alpha 0.1
+---
+- admin can create users
+- admin can promote
+
 History:
 ===
 I really dig the game Anti|Piracy, but Charles won't give me a build. At GlitchCon17 I kept pestering him for one and he said "if I had a way to distribute a beta like what you've got for Newt One...". So, of course, *lightbulb* and I'm making this now. Hopefully it'll be helpful for other indie game devs.
