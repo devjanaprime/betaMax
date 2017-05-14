@@ -5,6 +5,9 @@ myApp.controller( 'ProfileController', function( gamesService, profileService ){
   vm.verbose = true;
   vm.haps = [];
   vm.subs = [];
+  vm.creations = [];
+  vm.requests = [];
+  vm.showRequests = false;
   vm.profile = {
     loggedIn: false,
     isCreator: false,
@@ -12,10 +15,24 @@ myApp.controller( 'ProfileController', function( gamesService, profileService ){
   }; // end profile object
 
   vm.getMySubs = function(){
-    console.log( 'in get subs' );
+    if( vm.verbose) console.log( 'in get subs' );
     var subbers = profileService.getSubs( 0 );
     vm.subs = subbers;
     if( vm.verbose) console.log( 'subs:', vm.subs );
+  }; //end getmy subs
+
+  vm.getMyCreations = function(){
+    if( vm.verbose) console.log( 'in get subs' );
+    var creations = profileService.getCreations();
+    vm.creations = creations;
+    if( vm.verbose) console.log( 'creations:', vm.creations );
+  }; //end getmy subs
+
+  vm.getRequests = function( gameId ){
+    if( vm.verbose) console.log( 'in get requests for gameId:', gameId );
+    var requests = profileService.getRequests( gameId );
+    vm.requests = requests;
+    if( vm.verbose) console.log( 'requests:', vm.requests );
   }; //end getmy subs
 
   vm.initHaps = function(){
@@ -35,6 +52,15 @@ myApp.controller( 'ProfileController', function( gamesService, profileService ){
     vm.profile = serviceProfile;
     if( vm.verbose ) console.log( 'logged in as :', vm.profile );
   }; //end login function
+
+  vm.toggleGame = function( index ){
+    if( vm.verbose ) console.log( 'in toggleGame:', index );
+    vm.creations[index].show = ! vm.creations[index].show;
+  }; //end toggleShow
+
+  vm.toggleRequests = function(){
+      vm.showRequests = ! vm.showRequests;
+  }; //end toggle requests
 
   vm.toggleShow = function( index ){
     if( vm.verbose ) console.log( 'in toggleShow:', index );

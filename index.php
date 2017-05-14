@@ -25,10 +25,24 @@
         <p><button ng-click='pc.logIn();'>Log In</button></p>
       </div>
       <div ng-if='pc.profile.loggedIn'>
-        <div class="container" ng-if='pc.profile.isCreator'>
-          <h1>My Games</h1>
-          <div class='gameAdmin col-sm-3'>
-            Game that I admin
+        <div class="container" ng-if='pc.profile.isCreator' ng-init='pc.getMyCreations();'>
+          <h1>{{ pc.profile.username }}'s Stuff</h1>
+          <div class='container'>
+            <div class='gameAdmin' ng-repeat='creation in pc.creations'>
+              <h2><a ng-click="pc.toggleGame( $index );">{{ creation.name }}</a></h2>
+              <div ng-if='creation.show'>
+                <p>{{ creation.description }}</p>
+                <p>Current Version:<input type='text' placeholder="version"></p>
+                <p>Download Link:<input type='text' placeholder="URL"></p>
+                <button>Update</button>
+                <button>Email all subscribers</button>
+                <button>Discontinue Development</button>
+              </div>
+            </div>
+            <h2><a ng-click="pc.toggleRequests();">Outstanding Requests</a></h2>
+            <div class="requests" ng-init='pc.getRequests( creation.id );' ng-if="pc.showRequests">
+              <p ng-repeat='request in pc.requests'>{{ request.username }}</p>
+            </div>
           </div>
         </div>
         <div class="container" ng-init='pc.initHaps();'>
@@ -42,20 +56,25 @@
         </div>
         <div class="container" ng-init='pc.getMySubs();'>
           <h1>My Subscriptions</h1>
-          <div class='subscription' ng-repeat='sub in pc.subs'>
-            <h2><a ng-click='pc.toggleShow($index);'>{{ sub.name }}</a></h2>
-            <div ng-if='sub.show'>
-              <img ng-src='{{sub.image_url}}' width='100%'>
-              <p>{{ sub.description }}</p>
-              <h3>Current Version: XXX</h3>
-              <p>Version Notes: adsf qwer xcv asdf we sdfasdf asdv asd</p>
-              <button>Download</button>
-              <button>Unsub</button>
-              <button>Report</button>
+          <div class='container'>
+            <div class='subscription' ng-repeat='sub in pc.subs'>
+              <h2><a ng-click='pc.toggleShow($index);'>{{ sub.name }}</a></h2>
+              <div ng-if='sub.show'>
+                <img ng-src='{{sub.image_url}}' width='100%'>
+                <p>{{ sub.description }}</p>
+                <h3>Current Version: XXX</h3>
+                <p>Version Notes: adsf qwer xcv asdf we sdfasdf asdv asd</p>
+                <button>Download</button>
+                <button>Unsub</button>
+                <button>Report</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <footer>
+        footer stuff, yo
+      </footer>
     </div>
   </body>
 </html>
