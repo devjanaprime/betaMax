@@ -1,7 +1,9 @@
 .happenin{
+  background-color: gray;
   border: 1px;
   border-color: black;
   padding: 9 px;
+  color: white;
 };
 
 .subscription{
