@@ -14,7 +14,7 @@
     <div class="jumbotron">
       <img src='images/betaMaxAlpha.png'>
       <p class="lead">
-        Nothing to see here, yet...
+        Eventually this will be useful...
       </p>
     </div>
     <div class='container' ng-controller='ProfileController as pc'>

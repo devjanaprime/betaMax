@@ -1,5 +1,5 @@
 <?php
-  $postdata = json_decode(file_get_contents('php://input'), true);
+  $postdata = json_decode( file_get_contents( 'php://input' ), true );
   $email = $postdata[ "email" ];
   $pass = $postdata[ "pass" ];
   $hashedPass = md5( $pass );
