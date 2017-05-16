@@ -1,6 +1,6 @@
 var myApp = angular.module( 'myApp', [] );
 
-myApp.controller( 'ProfileController', function( gamesService, profileService ){
+myApp.controller( 'ProfileController', function( gamesService, profileService, $http ){
   var vm = this;
   vm.verbose = true;
   vm.haps = [];
@@ -14,8 +14,25 @@ myApp.controller( 'ProfileController', function( gamesService, profileService ){
     isAdmin: false
   }; // end profile object
 
+  vm.addUser = function(){
+    if( vm.verbose ) console.log( 'in addUser:', vm.newEmailIn );
+    var objectToSend = {
+      email: vm.newEmailIn,
+      username: vm.newUsernameIn,
+      pass: vm.newPasswordIn
+    }; // end objectToSend
+    if( vm.verbose ) console.log( 'sending:', objectToSend );
+    $http( {
+      url: 'http://thisweeksgame.com/scripts/db/user_create',
+      method: 'POST',
+      data: objectToSend
+    } ).then( function( response ){
+      console.log( 'back from server with:', response );
+    } ); //end http
+  }; //end add user
+
   vm.getMySubs = function(){
-    if( vm.verbose) console.log( 'in get subs' );
+    if( vm.verbose ) console.log( 'in get subs' );
     var subbers = profileService.getSubs( 0 );
     vm.subs = subbers;
     if( vm.verbose) console.log( 'subs:', vm.subs );

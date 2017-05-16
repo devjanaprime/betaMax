@@ -68,6 +68,13 @@ myApp.service( 'profileService', function( $http ){
 
   service.logIn = function( credentials ){
     if( verbose ) console.log( 'in profileService logIn for:', credentials.email );
+    $http( {
+      url: 'http://thisweeksgame.com/scripts/db/login',
+      method: 'POST',
+      data: credentials
+    } ).then( function( response ){
+      if( verbose ) console.log( 'back from server with:', response );
+    }); //end http
     var userProfile = {
       id: 0,
       email: 'asdf@qwer.com',

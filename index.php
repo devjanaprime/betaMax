@@ -25,6 +25,15 @@
         <p><button ng-click='pc.logIn();'>Log In</button></p>
       </div>
       <div ng-if='pc.profile.loggedIn'>
+        <div class="container" ng-if='pc.profile.isAdmin'>
+          <p>
+            Add user:
+            <input type='text' placeholder="email" ng-model='pc.newEmailIn' />
+            <input type='text' placeholder="user name" ng-model='pc.newUsernameIn' />
+            <input type='password' placeholder="password" ng-model='pc.newPasswordIn' />
+            <button ng-click='pc.addUser();'>Add User</button>
+          </p>
+        </div>
         <div class="container" ng-if='pc.profile.isCreator' ng-init='pc.getMyCreations();'>
           <h1>{{ pc.profile.username }}'s Stuff</h1>
           <div class='container'>

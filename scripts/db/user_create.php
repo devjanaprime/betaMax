@@ -1,17 +1,19 @@
 <?php
-  $email = $_POST[ "email" ];
-  $username = $_POST[ "username" ];
+  $postdata = file_get_contents( "php://input" );
+  $request = json_decode( $postdata );
+  $email = $request->email;
+  $pass = $request->pass;
+  $username = $request->username;
+  $hashedPass = md5( $pass );
 
   require( "config.php" );
-  $connect = mysqli_connect( DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE );
+  $connect = mysqli_connect( $host_name, $user_name, $password, $database );
     if( mysqli_connect_errno() ){
       echo "Failed to connect to server: " . mysqli_connect_error();
     }
     else{
-      $title = $connect->real_escape_string( $title );
-      $body = $connect->real_escape_string( $body );
-      $sql = "INSERT INTO users ( `email`, `username`, `status` )
-      VALUES ( '$email', '$username', '1' )";
+      $sql = "INSERT INTO user ( `email`, `username`, `status`, `pass`, date_added )
+      VALUES ( '$email', '$username', '1', '$hashedPass', NOW() )";
 
       if ( $connect->query( $sql ) === TRUE ){
         echo 'saved';
