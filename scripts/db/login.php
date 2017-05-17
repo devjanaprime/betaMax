@@ -11,9 +11,9 @@
       $connect->close();
     } // end no connect
     else{
-      $sql = "SELECT * FROM user WHERE email=" . $email . " and " . "pass=" . $hashedPass;
+      $sql = "SELECT * FROM user WHERE email='" . $email . "' AND " . "pass='" . $hashedPass . "'";
       $result = $connect->query($sql);
-      echo json_encode( $result->num_rows );
+      echo json_encode( $postdata . ' ' . $result->num_rows );
       $connect->close();
     } // end connected
 ?>

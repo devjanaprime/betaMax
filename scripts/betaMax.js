@@ -59,11 +59,12 @@ myApp.controller( 'ProfileController', function( gamesService, profileService, $
   }; //end init haps
 
   vm.logIn = function(){
+    console.log( vm.emailIn );
     var objectToSend = {
-      email: this.emailIn,
-      pass: this.passwordIn
+      email: 'devjana@yahoo.com',
+      pass: 'talisman.327'
     }; //end object to send
-    if( vm.verbose ) console.log( 'attempting loggin in:', objectToSend.email );
+    if( vm.verbose ) console.log( 'attempting loggin in:', objectToSend );
     var serviceProfile = profileService.logIn( objectToSend );
     if( vm.verbose ) console.log( 'logged in:', serviceProfile.loggedIn );
     vm.profile = serviceProfile;
