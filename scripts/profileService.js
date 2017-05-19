@@ -67,14 +67,29 @@ myApp.service( 'profileService', function( $http ){
   }; //end getSubs
 
   service.logIn = function( credentials ){
-    if( verbose ) console.log( 'in profileService logIn for:', credentials.email );
+    // if( verbose ) console.log( 'in profileService logIn for:', credentials.email );
+    // $http( {
+    //   url: 'http://thisweeksgame.com/scripts/db/login',
+    //   method: 'POST',
+    //   data: credentials
+    // } ).then( function( response ){
+    //   if( verbose ) console.log( 'back from server with:', response );
+    // }); //end http
+
+    if( verbose ) console.log( 'in logIn:', credentials.email );
+    var objectToSend = {
+      email: credentials.email,
+      pass: credentials.pass
+    }; // end objectToSend
+    if( verbose ) console.log( 'sending:', objectToSend );
     $http( {
       url: 'http://thisweeksgame.com/scripts/db/login',
       method: 'POST',
-      data: credentials
+      data: objectToSend
     } ).then( function( response ){
-      if( verbose ) console.log( 'back from server with:', response );
-    }); //end http
+      console.log( 'back from server with:', response );
+    } ); //end http
+
     var userProfile = {
       id: 0,
       email: 'asdf@qwer.com',

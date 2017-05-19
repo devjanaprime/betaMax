@@ -61,8 +61,8 @@ myApp.controller( 'ProfileController', function( gamesService, profileService, $
   vm.logIn = function(){
     console.log( vm.emailIn );
     var objectToSend = {
-      email: 'devjana@yahoo.com',
-      pass: 'talisman.327'
+      email: vm.emailIn,
+      pass: vm.passwordIn
     }; //end object to send
     if( vm.verbose ) console.log( 'attempting loggin in:', objectToSend );
     var serviceProfile = profileService.logIn( objectToSend );

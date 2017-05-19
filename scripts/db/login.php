@@ -1,5 +1,6 @@
 <?php
-  $postdata = json_decode( file_get_contents( 'php://input' ), true );
+  $postdata = file_get_contents( "php://input" );
+  $request = json_decode( $postdata );
   $email = $request->email;
   $pass = $request->pass;
   $hashedPass = md5( $pass );
@@ -11,9 +12,14 @@
       $connect->close();
     } // end no connect
     else{
-      $sql = "SELECT * FROM user WHERE email='" . $email . "' AND " . "pass='" . $hashedPass . "'";
+      $sql = "SELECT * FROM user WHERE email='" . $email . "' AND pass='" . $hashedPass . "'";
       $result = $connect->query($sql);
-      echo json_encode( $postdata . ' ' . $result->num_rows );
+      if( $result->num_rows != 0 ){
+          echo $result;
+      }
+      else{
+        echo 'oops';
+      }
       $connect->close();
     } // end connected
 ?>
