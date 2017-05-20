@@ -14,12 +14,19 @@
     else{
       $sql = "SELECT * FROM user WHERE email='" . $email . "' AND pass='" . $hashedPass . "'";
       $result = $connect->query($sql);
+      $results = array();
       if( $result->num_rows != 0 ){
-          echo $result;
-      }
+        $echoText = '{';
+        $rowCounter = 0;
+        while( $row = $result->fetch_assoc() ){
+          $rowCounter++;
+          $echoText = $row["status"];
+        }
+        echo $echoText;
+      } // end connection
       else{
-        echo 'oops';
-      }
+        echo 'nope';
+      } // end not found
       $connect->close();
     } // end connected
 ?>
