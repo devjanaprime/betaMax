@@ -67,15 +67,6 @@ myApp.service( 'profileService', function( $http ){
   }; //end getSubs
 
   service.logIn = function( credentials ){
-    // if( verbose ) console.log( 'in profileService logIn for:', credentials.email );
-    // $http( {
-    //   url: 'http://thisweeksgame.com/scripts/db/login',
-    //   method: 'POST',
-    //   data: credentials
-    // } ).then( function( response ){
-    //   if( verbose ) console.log( 'back from server with:', response );
-    // }); //end http
-
     if( verbose ) console.log( 'in logIn:', credentials.email );
     var objectToSend = {
       email: credentials.email,
@@ -87,19 +78,44 @@ myApp.service( 'profileService', function( $http ){
       method: 'POST',
       data: objectToSend
     } ).then( function( response ){
-      console.log( 'back from server with:', response );
+      if( verbose ) console.log( 'back from server with:', response );
+      if( response.data == "nope" ){
+        if( verbose ) console.log( 'no userFound' );
+        service.profile = {
+          loggedIn: false,
+          message: 'user not found'
+        };
+        return service.profile;
+      }// end no user found
+      else {
+        if( profileJson.status > 0 ){
+          var profileJson = response.data;
+          if( verbose ) console.log( profileJson );
+          service.profile = {
+            id: 0,
+            email: credentials.email,
+            username: profileJson.username,
+            loggedIn: true,
+          };
+          if( verbose ) console.log( userProfile );
+          if( profileJson == 2 ){
+            service.profile.isCreator = true;
+          }
+          if( profileJson == 3 ){
+            service.profile.isAdmin = true;
+          }
+          return service.profile;
+        } // end active user
+        else{
+          if( verbose ) console.log( 'inactive userFound' );
+          service.profile = {
+            loggedIn: false,
+            message: 'user inactive'
+          };
+          return service.profile;
+        } // end inactive user
+      } // end user found
     } ); //end http
-
-    var userProfile = {
-      id: 0,
-      email: 'asdf@qwer.com',
-      username: 'tempUser',
-      loggedIn: true,
-      isAdmin: true,
-      isCreator: true
-    };
-    service.profile = userProfile;
-    return userProfile;
-  };
+  }; // end login
 
 }); // end service

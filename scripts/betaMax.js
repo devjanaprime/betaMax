@@ -65,10 +65,10 @@ myApp.controller( 'ProfileController', function( gamesService, profileService, $
       pass: vm.passwordIn
     }; //end object to send
     if( vm.verbose ) console.log( 'attempting loggin in:', objectToSend );
-    var serviceProfile = profileService.logIn( objectToSend );
-    if( vm.verbose ) console.log( 'logged in:', serviceProfile.loggedIn );
-    vm.profile = serviceProfile;
-    if( vm.verbose ) console.log( 'logged in as :', vm.profile );
+      profileService.logIn( objectToSend );
+      console.log( profileService.profile );
+      // vm.profile = profileService.logIn( objectToSend );
+      // if( vm.verbose ) console.log( 'vm.profile:', vm.profile );
   }; //end login function
 
   vm.toggleGame = function( index ){

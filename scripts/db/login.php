@@ -16,13 +16,14 @@
       $result = $connect->query($sql);
       $results = array();
       if( $result->num_rows != 0 ){
-        $echoText = '{';
         $rowCounter = 0;
         while( $row = $result->fetch_assoc() ){
           $rowCounter++;
-          $echoText = $row["status"];
+          $profile->id = $row[ "id" ];
+          $profile->username = $row[ "username" ];
+          $profile->status = $row[ "status" ];
         }
-        echo $echoText;
+        echo json_encode( $profile );
       } // end connection
       else{
         echo 'nope';
