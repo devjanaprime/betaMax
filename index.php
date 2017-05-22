@@ -24,6 +24,9 @@
         <p><button ng-click='pc.logIn();'>Log In</button></p>
       </div>
       <div ng-if='pc.profile.loggedIn'>
+        <div>
+          <a ng-click='pc.logOut();'>Log Out</a>
+        </div>
         <div class="container" ng-if='pc.profile.isAdmin'>
           <p>
             Add user:
@@ -63,7 +66,7 @@
           </div>
         </div>
         <div class="container" ng-init='pc.getMySubs();'>
-          <h1>My Subscriptions</h1>
+          <h1>{{ pc.profile.username }}'s Subscriptions</h1>
           <div class='container'>
             <div class='subscription' ng-repeat='sub in pc.subs'>
               <h2><a ng-click='pc.toggleShow($index);'>{{ sub.name }}</a></h2>

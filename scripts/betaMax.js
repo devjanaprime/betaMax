@@ -108,6 +108,16 @@ myApp.controller( 'ProfileController', function( $http ){
     if( vm.verbose) console.log( 'requests:', vm.requests );
   }; //end getmy subs
 
+  vm.logOut = function(){
+    vm.profile = {
+      loggedIn: false,
+      isCreator: false,
+      isAdmin: false
+    }; // end profile object
+    localStorage.retain = false;
+    localStorage.user = JSON.stringify( vm.profile );
+  }; //end logOut
+
   vm.initHaps = function(){
     vm.haps = [];
     /// - replace with the three newest releases, eventually - ///
