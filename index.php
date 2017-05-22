@@ -15,7 +15,7 @@
         Eventually this will be useful...
       </p>
     </div>
-    <div class='container' ng-controller='ProfileController as pc'>
+    <div class='container' ng-controller='ProfileController as pc' ng-init='pc.checkLoggedIn()'>
       <div ng-hide='pc.profile.loggedIn'>
         <h2>Login:</h2>
         <p><input type='text' placeholder='email' ng-model='pc.emailIn'></p>

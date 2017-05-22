@@ -31,6 +31,13 @@ myApp.controller( 'ProfileController', function( $http ){
     } ); //end http
   }; //end add user
 
+  vm.checkLoggedIn = function(){
+    vm.profile = JSON.parse( localStorage.user );
+    if( vm.loggedIn ){
+      console.log( 'user already logged in' );
+    } //end check if loggedIn
+  }; // end chek logged in
+
   vm.getMySubs = function(){
     if( vm.verbose ) console.log( 'in get subs' );
     vm.subs = [];
