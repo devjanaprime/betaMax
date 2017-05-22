@@ -5,8 +5,6 @@
     <title>BETA MAXimizer Aplha</title>
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="scripts/betaMax.js" charset="utf-8"></script>
-    <script src="scripts/gamesService.js" charset="utf-8"></script>
-    <script src="scripts/profileService.js" charset="utf-8"></script>
     <link rel="stylesheet" href="vendors\bootstrap.css">
     <link rel="stylesheet" href="styles\betaMax.css">
   </head>
@@ -22,6 +20,7 @@
         <h2>Login:</h2>
         <p><input type='text' placeholder='email' ng-model='pc.emailIn'></p>
         <p><input type='password' placeholder='password' ng-model='pc.passwordIn'></p>
+        <p><input type="checkbox" ng-model='pc.remember'/> Remember Me!</p>
         <p><button ng-click='pc.logIn();'>Log In</button></p>
       </div>
       <div ng-if='pc.profile.loggedIn'>

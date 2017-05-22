@@ -162,6 +162,11 @@ myApp.controller( 'ProfileController', function( $http ){
           if( vm.profile.status >= 3 ){
             vm.profile.isAdmin = true;
           }
+          if( vm.remember ){
+            localStorage.retain = true;
+            localStorage.user = JSON.stringify( vm.profile );
+            if( vm.verbose ) console.log( 'remembering logged in' );
+          } // end remember
           return vm.profile;
         } // end active user
         else{
