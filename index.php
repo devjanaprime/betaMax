@@ -35,6 +35,19 @@
             <input type='password' placeholder="password" ng-model='pc.newPasswordIn' />
             <button ng-click='pc.addUser();'>Add User</button>
           </p>
+          <p>
+            Edit user:
+            <select ng-model='pc.editIdIn' ng-init='pc.getUsers()'>
+              <option ng-repeat='user in pc.users' value='{{ user.id }}'>{{ user.username }} ( {{ user.email }})</option>
+            </select>
+            <select ng-model='pc.editStatusIn'>
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+            <button ng-click='pc.editUser();'>Update User</button>
+          </p>
         </div>
         <div class="container" ng-if='pc.profile.isCreator' ng-init='pc.getMyCreations();'>
           <h1>{{ pc.profile.username }}'s Stuff</h1>

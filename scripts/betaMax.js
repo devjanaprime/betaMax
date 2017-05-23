@@ -38,6 +38,16 @@ myApp.controller( 'ProfileController', function( $http ){
     } //end check if loggedIn
   }; // end chek logged in
 
+  vm.editUser = function(){
+    if( vm.verbose ) console.log( 'in edit user:', vm.editIdIn, vm.editStatusIn );
+    $http({
+      method: 'GET',
+      url: 'http://thisweeksgame.com/scripts/db/user_update?i=' + vm.editIdIn + '&s=' + vm.editStatusIn 
+    }).then( function( response ){
+      vm.getUsers();
+    }); //end http/then
+  }; //end edit user
+
   vm.getMySubs = function(){
     if( vm.verbose ) console.log( 'in get subs' );
     vm.subs = [];
@@ -107,6 +117,16 @@ myApp.controller( 'ProfileController', function( $http ){
     /// - end eventually replace - ///
     if( vm.verbose) console.log( 'requests:', vm.requests );
   }; //end getmy subs
+
+  vm.getUsers = function(){
+    $http({
+      method: 'GET',
+      url: 'http://thisweeksgame.com/scripts/db/users'
+    }).then( function( response ){
+      if( vm.verbose ) console.log( 'back from server with:', response );
+      vm.users = response.data;
+    }); // end http then
+  }; //end get users
 
   vm.logOut = function(){
     vm.profile = {
