@@ -1,8 +1,8 @@
 <?php
-  $newStatus = $_GET[ 's' ];
-  $id = $_GET[ 'i' ];
-
-  echo "i've got i: ". $id . " & status: " . $newStatus ;
+  $postdata = file_get_contents( "php://input" );
+  $request = json_decode( $postdata );
+  $id = $request->id;
+  $newStatus = $request->status;
 
   require( "config.php" );
   $connect = mysqli_connect( $host_name, $user_name, $password, $database );

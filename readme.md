@@ -21,7 +21,7 @@ Diagrams:
 
 ERD:
 ---
-![erd](images/erd.png)
+![erd](images/erd.png)controller
 
 Invite flow:
 ---

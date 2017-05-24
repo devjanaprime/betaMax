@@ -9,12 +9,7 @@
     <link rel="stylesheet" href="styles\betaMax.css">
   </head>
   <body ng-app='myApp'>
-    <div class="jumbotron">
-      <img src='images/betaMaxAlpha.png'>
-      <p class="lead">
-        Eventually this will be useful...
-      </p>
-    </div>
+    <img src='images\betaZap.png' width=100%>
     <div class='container' ng-controller='ProfileController as pc' ng-init='pc.checkLoggedIn()'>
       <div ng-hide='pc.profile.loggedIn'>
         <h2>Login:</h2>
@@ -22,7 +17,11 @@
         <p><input type='password' placeholder='password' ng-model='pc.passwordIn'></p>
         <p><input type="checkbox" ng-model='pc.remember'/> Remember Me!</p>
         <p><button ng-click='pc.logIn();'>Log In</button></p>
-      </div>
+        <p ng-hide='pc.recover'><a ng-click="pc.recover=true">Forgot my password</a></p>
+        <div ng-show='pc.recover'>
+          <input type='text' ng-model='pc.recoverEmailIn' placeholder="email"><button ng-click="pc.recover();">Recover</button>
+        </div>
+      </div> <!-- end !loggedIn -->
       <div ng-if='pc.profile.loggedIn'>
         <div>
           <a ng-click='pc.logOut();'>Log Out</a>
@@ -48,7 +47,7 @@
             </select>
             <button ng-click='pc.editUser();'>Update User</button>
           </p>
-        </div>
+        </div> <!-- end admin  -->
         <div class="container" ng-if='pc.profile.isCreator' ng-init='pc.getMyCreations();'>
           <h1>{{ pc.profile.username }}'s Stuff</h1>
           <div class='container'>
@@ -68,16 +67,7 @@
               <p ng-repeat='request in pc.requests'>{{ request.username }}</p>
             </div>
           </div>
-        </div>
-        <div class="container" ng-init='pc.initHaps();'>
-          <h1>What's Happenin'</h1>
-          <div class='happenin col-sm-4' ng-repeat='hap in pc.haps'>
-            <img ng-src='{{hap.image_url}}' width='100%'>
-            <h2>{{ hap.name }}</h2>
-            <p>{{ hap.description }}</p>
-            <button>Request Access</button>
-          </div>
-        </div>
+        </div> <!-- end end creations  -->
         <div class="container" ng-init='pc.getMySubs();'>
           <h1>{{ pc.profile.username }}'s Subscriptions</h1>
           <div class='container'>
@@ -94,8 +84,18 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> <!-- end subs  -->
+        <div class="container" ng-init='pc.initHaps();'>
+          <h1>What's Happenin'</h1>
+          <div class='happenin col-sm-4' ng-repeat='hap in pc.haps'>
+            <img ng-src='{{hap.image_url}}' width='100%'>
+            <h2>{{ hap.name }}</h2>
+            <p>{{ hap.description }}</p>
+            <button>Request Access</button>
+          </div>
+        </div> <!-- end haps  -->
+      </div> <!-- end end logged in  -->
+      <hr>
       <footer>
         footer stuff, yo
       </footer>

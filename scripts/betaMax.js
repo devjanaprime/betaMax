@@ -40,10 +40,16 @@ myApp.controller( 'ProfileController', function( $http ){
 
   vm.editUser = function(){
     if( vm.verbose ) console.log( 'in edit user:', vm.editIdIn, vm.editStatusIn );
+    var objectToSend = {
+      id: vm.editIdIn,
+      status: vm.editStatusIn
+    }; //end objectToSend
     $http({
       method: 'GET',
-      url: 'http://thisweeksgame.com/scripts/db/user_update?i=' + vm.editIdIn + '&s=' + vm.editStatusIn 
+      url: 'http://thisweeksgame.com/scripts/db/user_update',
+      data: objectToSend
     }).then( function( response ){
+      if( vm.verbose ) console.log( 'back from server with:', response );
       vm.getUsers();
     }); //end http/then
   }; //end edit user
