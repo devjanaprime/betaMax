@@ -174,7 +174,7 @@ myApp.controller( 'ProfileController', function( $http ){
       email: vm.emailIn,
       pass: vm.passwordIn
     }; //end object to send
-    if( vm.verbose ) console.log( 'attempting loggin in:', objectToSend );
+    if( vm.verbose ) console.log( 'attempting login in:', objectToSend );
     $http( {
       url: 'http://thisweeksgame.com/scripts/db/login',
       method: 'POST',
@@ -213,7 +213,7 @@ myApp.controller( 'ProfileController', function( $http ){
           return vm.profile;
         } // end active user
         else{
-          if( verbose ) console.log( 'inactive userFound' );
+          if( vm.verbose ) console.log( 'inactive userFound' );
           vm.profile = {
             id: response.data.id,
             email: vm.emailIn,
