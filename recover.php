@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="vendors\bootstrap.css">
     <link rel="stylesheet" href="styles\betaMax.css">
   </head>
-  <body>
-    <h1>Email Recovery</h1>
+  <body ng-app='myApp'>
+    <div ng-controller='RecoverController'>
+      <h1>Email Recovery</h1>
+      <input type='text' placeholder="email" ng-model='rc.emailIn'><button ng-click='rc.resetPassword'>Reset Password</button>
+    </div>
   </body>
 </html>

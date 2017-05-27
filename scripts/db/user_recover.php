@@ -11,13 +11,22 @@
       echo "Failed to connect to server: " . mysqli_connect_error();
     }
     else{
-      $sql = "UPDATE user SET pass=" . $hashedPass . " WHERE email=" . $email;
-      if ( $connect->query( $sql ) === TRUE ){
-        echo 'saved';
-      }
+
+      $sql = "SELECT * FROM user WHERE email='" . $email . "'";
+      $result = $connect->query($sql);
+      $results = array();
+      if( $result->num_rows != 0 ){
+        // the subject
+        $subject = "BetaZap password recovery";
+        // the message
+        $bodyText = "This is a test message\nstill the test message";
+        // send email
+        mail( $email, $subject ,$msg);
+        echo "yep";
+      } // end connection
       else{
-        echo "error: " . $connect->error;
-      }
+        echo 'nope';
+      } // end not found
       $connect->close();
     }
     $connect->close();
